@@ -1,3 +1,13 @@
+/*
+ * PWM.C
+ *
+ *  Created on: Mar 6, 2023
+ *      Author: Matthew Atagi
+ *This Code file is for the PWM driver on the STM32F410R8T6
+ *Must be used in conjunction with PWM.h
+ */
+
+
 
 #include "PWM.h"
 
