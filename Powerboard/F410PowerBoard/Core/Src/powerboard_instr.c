@@ -82,11 +82,11 @@ void led_blue_on(){
 void set_enables_init(){
 	e_parallel_on();
 	micropower_on(); //set parallel enable and micropower on outputs
-
-	e_vbatt_on();
-	e_5v_on();
-	e_12v_on();
-	e_16v_on();
+	if(!(HAL_GPIO_ReadPin(GPIOC, P_REEDSW_DET)))// when reed sw open, get high on detect pin,
+			e_vbatt_on(); //thus only turn on vbatt if det pin low
+		e_5v_on();
+		e_12v_on();
+		//e_16v_on();
 	pulse_enables_clock(); //update 4 enables and send clock pulse to update
 }
 
@@ -285,6 +285,19 @@ void r_all_io(){//transmits gpio input and gpio output pins data in following fo
 			HAL_GPIO_ReadPin(GPIOB, P_AUXREED1)<<1|
 			HAL_GPIO_ReadPin(GPIOC, P_REEDSW_DET));
 }
+
+
+//reed switch
+void reed_switch_flipped(){// when reed switch flipped, sends state
+	if (HAL_GPIO_ReadPin(GPIOC, P_REEDSW_DET)){ // if high, sw open = vbatt off, value 1 for high
+		write_txL_buffer((T_REED_DET | 0x0001));
+		e_vbatt_off();
+	}else{
+		write_txL_buffer(T_REED_DET);
+		e_vbatt_on();
+	}
+}
+
 
 //Buffer errors and bad rx instructions
 void txL_buffer_full(){

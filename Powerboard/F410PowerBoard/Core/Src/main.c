@@ -127,7 +127,6 @@ int write_tx_buffer(uint16_t val, int* head, int tail, int mode) {
 		return 0;
 	}
 
-
 	if (mode == TXH_MODE){
 		circle_tx_bufferHigh[*head] = val;
 		messages_in_txH++;
@@ -341,6 +340,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
 		write_tx_buffer(CA_12V, &head_txH, tail_txH, TXH_MODE);
 	}else if (GPIO_Pin == P_16V_CA){
 		write_tx_buffer(CA_16V, &head_txH, tail_txH, TXH_MODE);
+	}else if (GPIO_Pin == P_REEDSW_DET){
+		reed_switch_flipped();
 	}else{
 		__NOP();
 	}
@@ -421,6 +422,7 @@ int main(void)
   uint8_t current_rx_data;// current rx and tx integers
   uint16_t current_txL_data;
   uint16_t current_txH_data;
+
   set_enables_init();
   set_cont_lights();
   HAL_UART_Receive_IT(&huart6, &rx_byte_buffer, 1); // begin UART interrupt receive
@@ -659,7 +661,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : PC11 */
   GPIO_InitStruct.Pin = GPIO_PIN_11;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 

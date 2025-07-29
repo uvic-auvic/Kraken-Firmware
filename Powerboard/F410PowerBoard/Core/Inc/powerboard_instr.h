@@ -183,6 +183,8 @@ void r_green(void);
 void r_blue(void);
 void r_all_io(void);
 
+void reed_switch_flipped(void);
+
 void txL_buffer_full(void);
 void rx_buffer_full(void);
 void bad_rx_request(void);
