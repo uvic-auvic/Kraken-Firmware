@@ -77,7 +77,7 @@ uint8_t circleBuffer[CIRCULAR_BUFFER_SIZE] = {0};
 uint8_t statusUpdate[StatusUpdateSize] = {0};
 
 
-int LEDTimer1 = 0;
+int LEDTimer1 = 3;
 int LEDTimer2 = 0;
 int LEDTimer3 = 0;
 int LEDTimer4 = 0;
@@ -261,7 +261,7 @@ void readBuffer(){
 
 
 	}
-	else if(circleBuffer[circleBufferRead] == 'S' && circleBuffer[circleBufferRead + 1] == 'T' && circleBuffer[circleBufferRead + 2] == 'P'){
+	else if(circleBuffer[circleBufferRead] == 'O' && circleBuffer[circleBufferRead + 1] == 'F' && circleBuffer[circleBufferRead + 2] == 'F'){
 		Stop_All_Motors();
 		HAL_Delay(1000);
 		set_Enables_High();
