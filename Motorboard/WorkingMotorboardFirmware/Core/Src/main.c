@@ -725,8 +725,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 
 		LEDToggle(GPIO_PIN_0, &LEDTimer1);
 		LEDToggle(GPIO_PIN_1, &LEDTimer2);
-		LEDToggle(GPIO_PIN_3, &LEDTimer3);
-		LEDToggle(GPIO_PIN_4, &LEDTimer4);
+		LEDToggle(GPIO_PIN_2, &LEDTimer3);
+		LEDToggle(GPIO_PIN_3, &LEDTimer4);
 
 		SendUpdate();
 
