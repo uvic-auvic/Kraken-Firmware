@@ -83,8 +83,8 @@ int LEDTimer3 = 0;
 int LEDTimer4 = 0;
 float LEDCount = 0;
 
-int LEDState1 = 0;
-int LEDState2 = 0;
+float LEDState1 = 0;
+float LEDState2 = 0;
 
 float Timecount = 0;
 
