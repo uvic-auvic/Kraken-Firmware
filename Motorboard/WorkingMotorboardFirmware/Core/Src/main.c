@@ -280,20 +280,20 @@ void readBuffer(){
 	circleBufferRead += 3;
 }
 
-void LEDToggle(uint16_t pin, int* Timer){
+void LEDToggle(uint16_t pin,int Timer){
 
 
-	if(*Timer == 0){
+	if(Timer == 0){
 		HAL_GPIO_WritePin(GPIOC, pin, 0);
 	}
-	else if(*Timer == 1){
+	else if(Timer == 1){
 		
 		HAL_GPIO_WritePin(GPIOC, pin, LEDState1);
 	}
-	else if(*Timer == 2){
+	else if(Timer == 2){
 		HAL_GPIO_WritePin(GPIOC, pin, LEDState2);
 	}
-	else if(*Timer == 3){
+	else if(Timer == 3){
 		HAL_GPIO_WritePin(GPIOC, pin, 1);
 	}
 
@@ -744,10 +744,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 			LEDState1 = 0;
 		}
 
-		LEDToggle(GPIO_PIN_0, &LEDTimer1);
-		LEDToggle(GPIO_PIN_1, &LEDTimer2);
-		LEDToggle(GPIO_PIN_2, &LEDTimer3);
-		LEDToggle(GPIO_PIN_3, &LEDTimer4);
+		LEDToggle(GPIO_PIN_0, LEDTimer1);
+		LEDToggle(GPIO_PIN_1, LEDTimer2);
+		LEDToggle(GPIO_PIN_2, LEDTimer3);
+		LEDToggle(GPIO_PIN_3, LEDTimer4);
 
 		SendUpdate();
 
