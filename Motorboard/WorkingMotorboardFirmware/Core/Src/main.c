@@ -83,6 +83,9 @@ int LEDTimer3 = 0;
 int LEDTimer4 = 0;
 float LEDCount = 0;
 
+int LEDState1 = 0;
+int LEDState2 = 0;
+
 float Timecount = 0;
 
 /* USER CODE END PV */
@@ -283,11 +286,12 @@ void LEDToggle(uint16_t pin, int* Timer){
 	if(*Timer == 0){
 		HAL_GPIO_WritePin(GPIOC, pin, 0);
 	}
-	else if(*Timer == 1 && LEDCount >= 0.25){
-		HAL_GPIO_TogglePin(GPIOC, pin);
+	else if(*Timer == 1){
+		
+		HAL_GPIO_WritePin(GPIOC, pin, LEDState1);
 	}
-	else if(*Timer == 2 && LEDCount == 1){
-		HAL_GPIO_TogglePin(GPIOC, pin);
+	else if(*Timer == 2){
+		HAL_GPIO_WritePin(GPIOC, pin, LEDState2);
 	}
 	else if(*Timer == 3){
 		HAL_GPIO_WritePin(GPIOC, pin, 1);
@@ -720,8 +724,25 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 
 	if(htim == &htim9){
 
+		
 		Timecount += 0.25;
 		LEDCount += 0.25;
+
+		if((LEDCount == 1){
+			if(LEDState2 == 1){
+				LEDState2 = 0;
+			}
+			else{
+				LEDState2 = 1;
+			}
+		}
+
+		if(LEDState1 == 0){
+			LEDState1 = 1;
+		}
+		else{
+			LEDState1 = 0;
+		}
 
 		LEDToggle(GPIO_PIN_0, &LEDTimer1);
 		LEDToggle(GPIO_PIN_1, &LEDTimer2);
