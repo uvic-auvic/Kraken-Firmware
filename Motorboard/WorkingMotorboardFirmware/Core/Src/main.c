@@ -728,7 +728,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim){
 		Timecount += 0.25;
 		LEDCount += 0.25;
 
-		if((LEDCount == 1){
+		if(LEDCount == 1){
 			if(LEDState2 == 1){
 				LEDState2 = 0;
 			}
