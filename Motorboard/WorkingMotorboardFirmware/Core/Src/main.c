@@ -111,7 +111,7 @@ void Initialize_Motors(){
 	INIT_TIM_PWM(TIM1,PWM_PERIOD,PrescalerRegister);
 	INIT_TIM_PWM(TIM11,PWM_PERIOD,PrescalerRegister);
 
-	HAL_Delay(30000);
+	HAL_Delay(100);
 	//start pwm 1
 	Start_PWM(TIM5,2,INITIALIZE_DUTY,GPIOC,10,2);
 	HAL_Delay(1);
