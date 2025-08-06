@@ -233,7 +233,7 @@ void LED_Control(){
 	uint8_t LEDSelect = circleBuffer[circleBufferRead + 1];
 
 	if(LEDSelect & 1){
-		LEDTimer1 = LEDSpeed;
+		//LEDTimer1 = LEDSpeed; //Commented out to make LED1 uneditable
 	}
 	if(LEDSelect & 2){
 		LEDTimer2 = LEDSpeed;
