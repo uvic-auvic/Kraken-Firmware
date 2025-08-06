@@ -81,14 +81,14 @@ void led_blue_on(){
 
 void set_enables_init(){
 	e_parallel_on();
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	micropower_on(); //set parallel enable and micropower on outputs
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	if(!(HAL_GPIO_ReadPin(GPIOC, P_REEDSW_DET)))// when reed sw open, get high on detect pin,
 		e_vbatt_on(); //thus only turn on vbatt if det pin low
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	e_5v_on();
-	HAL_Delay(50);
+	HAL_Delay(1000);
 	e_12v_on();
 	//e_16v_on();
 	pulse_enables_clock(); //update 4 enables and send clock pulse to update
