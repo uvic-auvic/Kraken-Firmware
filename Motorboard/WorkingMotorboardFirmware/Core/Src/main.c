@@ -278,6 +278,9 @@ void readBuffer(){
 
 	messages -= 1;
 	circleBufferRead += 3;
+	if(circleBufferRead >= CIRCULAR_BUFFER_SIZE-1){
+		circleBufferRead = 0;
+	}
 }
 
 void LEDToggle(uint16_t pin,int Timer){
@@ -714,6 +717,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	///HAL_UART_Transmit(&huart1, buffer, 1, 0xFFFF);
 	messages += 1;
 	circleBufferStore += 3;
+
+	if(circleBufferStore >= CIRCULAR_BUFFER_SIZE - 1){
+		circleBufferStore = 0;
+	}
+	
 	statusUpdate[9] = (100*messages*3)/CIRCULAR_BUFFER_SIZE;
 	HAL_UART_Receive_DMA(&huart1, &circleBuffer[circleBufferStore], 3);
 }
